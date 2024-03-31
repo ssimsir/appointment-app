@@ -18,27 +18,39 @@ function ReservationForm({
 	const handleCloseModal = () => setShowModal(false);
 
 	const handleSubmitClick = () => {
-		saveReservation(patientName, date, timeId, name);
-		appointmentData.push({
-			patient: patientName,
-			date: date,
-			time: timeId,
-			consulted: false,
-			doctor: name,
-		});
-		setAppointmentData(appointmentData);
-		setAppointmentDate(new Date(date));
-		handleCloseModal();
+		if (patientName.trim() === "") {
+			alert("enter invalid name");
+		} else {
+			const id = appointmentData.length + 1;
+			saveReservation(id, patientName, date, timeId, name);
+			appointmentData.push({
+				id: id,
+				patient: patientName,
+				date: date,
+				time: timeId,
+				consulted: false,
+				doctor: name,
+			});
+			setAppointmentData(appointmentData);
+			setAppointmentDate(new Date(date));
+			handleCloseModal();
+		}
 	};
 
-	const saveReservation = async (patinetName, date, timeId, doctorName) => {
+	const saveReservation = async (
+		id,
+		patinetName,
+		date,
+		timeId,
+		doctorName
+	) => {
 		try {
 			const response = await fetch(
 				"https://mock-server-cdkz.onrender.com/appointmentApp.appointmentData",
 				{
 					method: "POST",
-					body: `{"patient": "${patinetName}","date": "${date}","time": ${timeId},"consulted": false,"doctor": "${doctorName}"}`,					
-					headers: { "Content-Type": "application/json" }
+					body: `{"id": "${id}","patient": "${patinetName}","date": "${date}","time": ${timeId},"consulted": false,"doctor": "${doctorName}"}`,
+					headers: { "Content-Type": "application/json" },
 				}
 			);
 			const result = await response.json();
@@ -70,9 +82,13 @@ function ReservationForm({
 							<Form.Label>Patinet Name</Form.Label>
 							<Form.Control
 								onChange={(e) => setPatientName(e.target.value)}
+								required
 								type="text"
 								placeholder="Enter your name"
 							/>
+							<Form.Control.Feedback type="invalid">
+								Please provide a valid Name.
+							</Form.Control.Feedback>
 						</Form.Group>
 					</Form>
 				</Modal.Body>
