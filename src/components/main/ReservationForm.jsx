@@ -7,7 +7,7 @@ function ReservationForm({
 	setAppointmentData,
 	name,
 	date,
-	time,
+	time, 
 	timeId,
 }) {
 	const [showModal, setShowModal] = useState(false);
