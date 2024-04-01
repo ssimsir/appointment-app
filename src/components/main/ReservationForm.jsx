@@ -49,7 +49,7 @@ function ReservationForm({
 				"https://mock-server-cdkz.onrender.com/appointmentApp.appointmentData",
 				{
 					method: "POST",
-					body: `{"id": "${id}","patient": "${patinetName}","date": "${date}","time": ${timeId},"consulted": false,"doctor": "${doctorName}"}`,
+					body: `{"id": ${id},"patient": "${patinetName}","date": "${date}","time": ${timeId},"consulted": false,"doctor": "${doctorName}"}`,
 					headers: { "Content-Type": "application/json" },
 				}
 			);
