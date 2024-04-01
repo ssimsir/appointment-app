@@ -21,7 +21,15 @@ function ReservationForm({
 		if (patientName.trim() === "") {
 			alert("enter invalid name");
 		} else {
-			const id = appointmentData.length + 1;
+			//const id = appointmentData.length + 1;
+			let highestId=0;
+			appointmentData.forEach(element => {
+				let elementId = element.id
+				if (elementId>highestId) highestId=elementId
+				
+			});
+			const id = highestId+1
+			alert(id)
 			saveReservation(id, patientName, date, timeId, name);
 			appointmentData.push({
 				id: id,
