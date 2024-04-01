@@ -184,7 +184,9 @@ const Doctor = ({ doctor }) => {
 										<div>
 											{filteredAppointmentData.length === 1 ? (
 												<>
-													{filteredAppointmentData[0].consulted || 
+													{filteredAppointmentData[0].consulted ? 
+													<p style={{border:"1px solid blueviolet", borderRadius:"7px", textAlign:	"center", backgroundColor:"blueviolet", color:"white", padding:".5rem"}}>CONSULTED</p>
+													:
 													<div
 														style={{
 															display: "flex",
@@ -230,10 +232,11 @@ const Doctor = ({ doctor }) => {
 															></i>
 														</p>
 													</div>}
+													
 													<p style={{fontSize:"1.1rem", fontWeight:"bold", color:"red"}}>
 														{filteredAppointmentData[0].patient}
 													</p>
-													{filteredAppointmentData[0].consulted && <p style={{border:"1px solid blueviolet", borderRadius:"7px", textAlign:	"center", backgroundColor:"blueviolet", color:"white", padding:".5rem"}}>CONSULTED</p>}
+
 												</>
 											) : (
 												<ReservationForm

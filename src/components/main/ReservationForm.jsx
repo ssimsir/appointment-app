@@ -29,7 +29,6 @@ function ReservationForm({
 				
 			});
 			const id = highestId+1
-			alert(id)
 			saveReservation(id, patientName, date, timeId, name);
 			appointmentData.push({
 				id: id,
